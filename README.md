@@ -6,4 +6,4 @@ O projeto visa a criação de uma ferramenta para listar, organizar, manipular t
 
 funcionalidades do projeto
 
-Uma das principais funcionalidades da ferramenta é a prática de poder ter uma visão mais ampla do que precisa ser feito, o que está em desenvolvimento, ou que está concluído para otimizar o tempo total do que se deseja ter a gestão.
+Uma das principais funcionalidades da ferramenta é a prática de poder ter uma visão mais ampla do que precisa ser feito, o que está em desenvolvimento, ou que está concluído para otimizar o tempo total do que se deseja ter a gestão. 
