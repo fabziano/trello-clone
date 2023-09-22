@@ -24,11 +24,9 @@ header{
   background-color:#111;
   padding: 13px 30px;
 }
-
 header h1{
   font: normal 30pt Arial;
 }
-
 .SeletorCor{
   display: flex;
   font-size: small;
@@ -54,4 +52,3 @@ header h1{
   border-radius: 50%;
   border: 2.5px solid #ffffff;
 }
-
