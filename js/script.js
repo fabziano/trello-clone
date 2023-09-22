@@ -1,3 +1,5 @@
+'use strict'
+
 const PlanoDeFundo = document.querySelector('main');
 
 if (localStorage.hasOwnProperty('corSelecionada')) {
