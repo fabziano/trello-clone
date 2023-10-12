@@ -1,38 +1,55 @@
+/* IMPORTAR ICONES DO BOOTSTRAP*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+/* REINICIAR PADDING E MARGIN */
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* DEINIFIR COR DE BACKGROUND E FONT */ 
 :root {
   --background: #16243a; 
+  --font:#fff;
 }
+/* BODY E CONTAINER */
 body{
-  background-color: #111; 
-  font-family: Arial, sans-serif;
-  color: #ffffff;
+  font-family: Helvetica, sans-serif;
+  color: var(--font);
 }
-main{
-  background-color: var(--background); 
-  width: 100%;
-  height: 90vh;
+.container{
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template: 5.5em 1fr / 1fr;
 }
+/* HEADER */
 header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   background-color:#111;
-  padding: 13px 30px;
+  padding: 1em;
 }
-header h1{
-  font: normal 30pt Arial;
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  font-size: 2em;
 }
+.logo h1{
+  font: bold 30pt Helvetica;
+}
+/* MAIN */
+main{
+  background-color: var(--background); 
+}
+/* SELETOR DE CORES */
 .SeletorCor{
   display: flex;
   font-size: small;
   flex-direction: column;
   align-items: center;
-  gap:0.5em;
 }
 #seletor {
   -webkit-appearance: none;
