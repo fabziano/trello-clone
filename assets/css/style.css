@@ -1,4 +1,4 @@
-/* IMPORTAR ICONES DO BOOTSTRAP*/
+/* IMPORTAÇÃO DE ICONES DA BIBLIOTECA BOOTSTRAP */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
 /* REINICIAR PADDING E MARGIN */
@@ -19,13 +19,14 @@ body{
   background-color: var(--background);
 
 }
+/* CONTAINER É FILHO DIRETO DO BODY, PARA TERMOS CONTROLE DE UMA PARTE DO CÓDIGO APENAS*/
 .container{
   display: flex;
   flex-direction: column;
   max-width:100vw;
   height: 100vh;
 }
-/* HEADER */
+/* HEADER É NOSSA BARRA SUPERIOR CONTENDO ICONE E SELETOR DE CORES*/
 header{
   display: flex;
   align-items: center;
@@ -33,6 +34,7 @@ header{
   background-color:#111;
   padding: 1em;
 }
+/* LOGO É FILHO DIRETO DO HEADER PARA POSICIONAR O TITULO TRELLO */
 .logo{
   display: flex;
   align-items: center;
@@ -42,7 +44,7 @@ header{
 .logo h1{
   font: bold 30pt Helvetica;
 }
-/* MAIN */
+/* MAIN É A TAG COM O CONTEUDO PRINCIPAL DAS COLUNAS E CARTOES */
 main {
   width: 100%;
   display: flex;
@@ -125,8 +127,6 @@ main {
   line-height: 1.5em;
 }
 
-
-
 /* SELETOR DE CORES */
 .SeletorCor{
   margin-right: 2em;
@@ -153,6 +153,8 @@ main {
   border-radius: 50%;
   border: 2.5px solid #ffffff;
 }
+
+/* PARTE RESPONSIVA QUE CAUSA QUEBRA DE LINHA QUANDO A TELA ESTIVER MENOR QUE 720px */
 
 @media (max-width: 720px) {
   .container{
