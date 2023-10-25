@@ -17,6 +17,7 @@ Projeto de um quadro kanban baseado no aplicativo Trello, com três colunas: To 
 3. Para editar uma tarefa clique no botão editar e informe as alteração no prompt que aparece no topo da página.
 4. Para remover uma tarefa clique em remover e confirme o aviso. 
 5. Para alterar a cor de fundo da página clica no crículo no canto superior direito e mova o cursor através do seletor de cores.
+6. Página responsiva que ao diminuir de tamanho cria uma quebra de linha nas colunas. 
 
 ## Membros do Grupo
 
