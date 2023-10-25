@@ -47,7 +47,6 @@ main {
   width: 100%;
   display: flex;
   align-items: flex-start;
-  gap: 1em;
   justify-content: center;
   padding: 1em;
   gap:3em;
@@ -153,4 +152,34 @@ main {
 #seletor::-moz-color-swatch {
   border-radius: 50%;
   border: 2.5px solid #ffffff;
+}
+
+@media (max-width: 720px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  header{
+    width: 100%;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1em;
+    justify-content: center;
+    padding: 1em;
+  }
+  .column{
+    padding: 1.3em;
+    gap:0.1em;
+    border-radius: 0.6em;
+    max-width: 16em;
+    width: 16em;
+  }
+  
 }
