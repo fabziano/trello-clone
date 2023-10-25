@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trello - Grupo 8</title>
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container">  
+      <header>
+        <div class="logo">
+          <i class="bi bi-trello"></i><h1>Trello</h1>
+        </div>
+        <div class="SeletorCor">
+          <input type="color" value="#16243a" id="seletor" title="Cor do Background"/>
+          <label for="seletor">alterar cor</label>
+        </div>   
+      </header>
+      <main>
+        <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
+            <h3>To Do</h3>
+            <input type="text" id="todoTitle" placeholder="Título da Tarefa">
+            <input type="text" id="todoTask" placeholder="Descrição da Tarefa">
+            <button onclick="addToColumn('todo')"><i class="bi bi-plus-circle"></i> Adicionar</button>
+            <ul id="todoList"></ul>
+          </div>
+          <div class="column" id="inProgress" ondrop="drop(event, 'inProgress')" ondragover="allowDrop(event)">
+            <h3>In Progress</h3>
+            <input type="text" id="inProgressTitle" placeholder="Título da Tarefa">
+            <input type="text" id="inProgressTask" placeholder="Descrição da Tarefa">
+            <button onclick="addToColumn('inProgress')"><i class="bi bi-plus-circle"></i> Adicionar</button>
+            <ul id="inProgressList"></ul>
+          </div>      
+          <div class="column" id="done" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+            <h3>Done</h3>
+            <input type="text" id="doneTitle" placeholder="Título da Tarefa">
+            <input type="text" id="doneTask" placeholder="Descrição da Tarefa">
+            <button onclick="addToColumn('done')"><i class="bi bi-plus-circle"></i> Adicionar</button>
+            <ul id="doneList"></ul>
+          </div>
+      </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html> 
