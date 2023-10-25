@@ -2,15 +2,17 @@
 
 // ALTERA PLANO DE FUNDO 
 
+// SELEÇÃO DO BODY PARA QUE A COR DE FUNDO SELECIONADA SEJA TODO O DOCUMENTO 
 const PlanoDeFundo = document.querySelector('body');
 
-
+//BUSCA DA COR SELECIONADA NO LOCAL STORAGE ATRAVÉS DA CHAVE, EM CASOS ONDE JÁ TENHA UMA COR. 
 if (localStorage.hasOwnProperty('corSelecionada')) {
   const corSelecionada = localStorage.getItem('corSelecionada');
   seletor.value = corSelecionada;
   PlanoDeFundo.style.backgroundColor = corSelecionada;
 }
 
+// LISTENER DO INPUT COLOR QUE ESTA NO HTML
 seletor.addEventListener('input', () => {
   const corEscolhida = seletor.value;
   PlanoDeFundo.style.backgroundColor = corEscolhida;
@@ -24,6 +26,7 @@ function addToColumn(columnId) {
   var title = document.getElementById(columnId + "Title").value;
   var task = document.getElementById(columnId + "Task").value;
 
+  // Utilizando .trim para remover espaços e conferir se titulos e tarefa estão vazios
   if (title.trim() === "" || task.trim() === "") {
       alert("Preencha título e descrição!");
   } else {
@@ -49,6 +52,7 @@ function addToColumn(columnId) {
       document.getElementById(columnId + "List").appendChild(listItem);
 
       // Adicione os eventos de clique aos botões de editar e remover
+      
       var editButton = listItem.querySelector('.edit-btn');
       editButton.addEventListener('click', function() {
           var taskId = listItem.getAttribute('data-task-id');
@@ -63,7 +67,7 @@ function addToColumn(columnId) {
           }
       });
 
-      // Limpe os campos após adicionar a tarefa
+      // Limpe os campos após adicionar a tarefa, do contrário o texto permanece no input de text
       document.getElementById(columnId + "Title").value = "";
       document.getElementById(columnId + "Task").value = "";
 
@@ -72,6 +76,7 @@ function addToColumn(columnId) {
   }
 }
 
+// SALVAR TAREFAS
 
 function saveTasks() {
   // Obtenha todas as tarefas e salve-as no Local Storage
@@ -88,17 +93,17 @@ function removeTask(taskItem, taskId) {
   // Obtenha o ID da tarefa a partir do atributo de dados
   var taskId = taskItem.getAttribute('data-task-id');
 
-  // Remova a tarefa do DOM
   taskItem.remove();
 
   // Salve as alterações no Local Storage
   saveTasks();
 }
 
-function editTask(taskItem, taskId) {
-  // Obtenha o ID da tarefa a partir do atributo de dados
-  var taskId = taskItem.getAttribute('data-task-id');
+//FIM DO SALVAR TAREFAS
 
+//EDITAR TAREFAS
+
+function editTask(taskItem) {
   // Obtenha o título e a descrição atuais da tarefa
   var currentTitle = taskItem.querySelector('strong').innerText.replace(':', '');
   var currentTask = taskItem.childNodes[2].nodeValue.trim();
@@ -107,29 +112,33 @@ function editTask(taskItem, taskId) {
   var newTitle = prompt('Editar título:', currentTitle);
   var newTask = prompt('Editar descrição:', currentTask);
 
-  // Atualize a tarefa se os novos títulos e descrição não forem nulos
-  if (newTitle !== null && newTask !== null) {
-      taskItem.innerHTML = `<strong>${newTitle}:</strong><br>${newTask}<br>
-          <button class="remove-btn"><i class="bi bi-trash"></i> Remover</button>
-          <button class="edit-btn"><i class="bi bi-pencil-square"></i> Editar</button>`;
+  // Valide se os novos títulos e descrição não são nulos ou vazios
+  if (newTitle !== null && newTitle.trim() !== '' && newTask !== null && newTask.trim() !== '') {
+    taskItem.innerHTML = `<strong>${newTitle}:</strong><br>${newTask}<br>
+        <button class="remove-btn"><i class="bi bi-trash"></i> Remover</button>
+        <button class="edit-btn"><i class="bi bi-pencil-square"></i> Editar</button>`;
 
-      // Adicione novamente os eventos de edição e remoção
-      var editButton = taskItem.querySelector('.edit-btn');
-      editButton.addEventListener('click', function() {
-          editTask(taskItem);
-      });
+    // Adicione novamente os eventos de edição e remoção
+    var editButton = taskItem.querySelector('.edit-btn');
+    editButton.addEventListener('click', function() {
+      editTask(taskItem);
+    });
 
-      var removeButton = taskItem.querySelector('.remove-btn');
-      removeButton.addEventListener('click', function() {
-          if (confirm('Tem certeza de que deseja remover esta tarefa?')) {
-              removeTask(taskItem);
-          }
-      });
+    var removeButton = taskItem.querySelector('.remove-btn');
+    removeButton.addEventListener('click', function() {
+      if (confirm('Tem certeza de que deseja remover esta tarefa?')) {
+        removeTask(taskItem);
+      }
+    });
 
-      // Salve as alterações no Local Storage
-      saveTasks();
+    // Salve as alterações no Local Storage
+    saveTasks();
+  } else {
+    alert('Preencha os campos para editar a tarefa.');
   }
 }
+
+//EVENTOS DE PERMITIR DRAG AND DROP
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -153,6 +162,7 @@ function drop(ev, columnId) {
   saveTasks();
 }
 
+//CARREGAMENTO DAS TAREFAS
 
 function loadTasks() {
   // Recupere as tarefas e as IDs do Local Storage
@@ -196,12 +206,13 @@ function loadTasks() {
     });
   });
 
-
   var taskItems = document.querySelectorAll('[draggable="true"]');
   taskItems.forEach(function(taskItem) {
       taskItem.addEventListener('dragstart', drag);
   });
 }
+
+//FUNCAO PARA QUANDO A PÁGINA É CARREGADA, CHAMANDO A FUNÇÃO DE LOAD DAS TAREFAS
 
 window.onload = function() {
   loadTasks();
