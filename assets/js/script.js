@@ -36,7 +36,7 @@ function addToColumn(columnId) {
 
       // Adicione o ID como um atributo de dados
       listItem.setAttribute('data-task-id', taskId);
-      
+
       // Conteúdo da tarefa
       listItem.innerHTML = `<strong>${title}:</strong><br>${task}<br>
           <button class="remove-btn"><i class="bi bi-trash"></i> Remover</button>
@@ -48,6 +48,21 @@ function addToColumn(columnId) {
       // Adicione a tarefa à lista da coluna correspondente
       document.getElementById(columnId + "List").appendChild(listItem);
 
+      // Adicione os eventos de clique aos botões de editar e remover
+      var editButton = listItem.querySelector('.edit-btn');
+      editButton.addEventListener('click', function() {
+          var taskId = listItem.getAttribute('data-task-id');
+          editTask(listItem, taskId);
+      });
+
+      var removeButton = listItem.querySelector('.remove-btn');
+      removeButton.addEventListener('click', function() {
+          var taskId = listItem.getAttribute('data-task-id');
+          if (confirm('Tem certeza de que deseja remover esta tarefa?')) {
+              removeTask(listItem, taskId);
+          }
+      });
+
       // Limpe os campos após adicionar a tarefa
       document.getElementById(columnId + "Title").value = "";
       document.getElementById(columnId + "Task").value = "";
@@ -56,6 +71,7 @@ function addToColumn(columnId) {
       saveTasks();
   }
 }
+
 
 function saveTasks() {
   // Obtenha todas as tarefas e salve-as no Local Storage
