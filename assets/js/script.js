@@ -22,6 +22,7 @@ seletor.addEventListener('input', () => {
 
 // FIM DO ALTERA PLANO DE FUNDO //
 
+//INICIO FUNÇOES DE COLUNA
 function addToColumn(columnId) {
     // Obtenha os valores do título e descrição da tarefa
     var title = document.getElementById(columnId + "Title").value;
@@ -151,6 +152,9 @@ function editTask(taskItem) {
         alert('Preencha os campos para editar a tarefa.');
     }
 }
+//FIM FUNÇOES DE COLUNA
+
+//INICIO DRAG AND DROP
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -173,6 +177,7 @@ function drop(ev, columnId) {
     // Atualize o Local Storage após a movimentação da tarefa
     saveTasks();
 }
+//FIM DRAG AND DROP
 
 function loadTasks() {
     // Recupere as tarefas e as IDs do Local Storage
