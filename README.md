@@ -1,5 +1,9 @@
 # Trello Clone
 
+![preview](https://github.com/fabziano/trello-clone-grupo8/assets/120424528/aa4f8b6b-8110-439a-a482-f1759eb9571f)
+
+## Descrição 
+
 Projeto de um quadro kanban baseado no aplicativo Trello, com três colunas: To Do, In Progress e Done, que foi desenvolvido pelo grupo 8.
 
 ## Funcionalidades
@@ -26,6 +30,4 @@ Projeto de um quadro kanban baseado no aplicativo Trello, com três colunas: To 
 - Mauricio Henrique Ferreira Cury
 - Pedro Henrique Alves dos Santos
 - Pedro Lucas de Oliveira Soares
-
-## Preview do Projeto
 
