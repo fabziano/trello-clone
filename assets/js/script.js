@@ -68,7 +68,7 @@ function saveTasks() {
   localStorage.setItem("doneTasks", doneTasks);
 }
 
-function removeTask(taskItem) {
+function removeTask(taskItem, taskId) {
   // Obtenha o ID da tarefa a partir do atributo de dados
   var taskId = taskItem.getAttribute('data-task-id');
 
@@ -79,7 +79,7 @@ function removeTask(taskItem) {
   saveTasks();
 }
 
-function editTask(taskItem) {
+function editTask(taskItem, taskId) {
   // Obtenha o ID da tarefa a partir do atributo de dados
   var taskId = taskItem.getAttribute('data-task-id');
 
@@ -139,29 +139,47 @@ function drop(ev, columnId) {
 
 
 function loadTasks() {
-  var todoTasks = localStorage.getItem("todoTasks");
-  var inProgressTasks = localStorage.getItem("inProgressTasks");
-  var doneTasks = localStorage.getItem("doneTasks");
+  // Recupere as tarefas e as IDs do Local Storage
+  var todoTasks = localStorage.getItem("todoTasks") || "";
+  var inProgressTasks = localStorage.getItem("inProgressTasks") || "";
+  var doneTasks = localStorage.getItem("doneTasks") || "";
+  var taskIds = JSON.parse(localStorage.getItem("taskIds")) || [];
 
-  document.getElementById("todoList").innerHTML = todoTasks || "";
-  document.getElementById("inProgressList").innerHTML = inProgressTasks || "";
-  document.getElementById("doneList").innerHTML = doneTasks || "";
+  // Defina o conteúdo das listas de tarefas
+  document.getElementById("todoList").innerHTML = todoTasks;
+  document.getElementById("inProgressList").innerHTML = inProgressTasks;
+  document.getElementById("doneList").innerHTML = doneTasks;
 
-  var editButtons = document.querySelectorAll('.edit-btn');
-  editButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      editTask(button.parentElement);
+  // Adicione a função de arrastar às tarefas
+  var taskItems = document.querySelectorAll('[draggable="true"]');
+  taskItems.forEach(function (taskItem, index) {
+    taskItem.addEventListener("dragstart", drag);
+    // Adicione o ID da tarefa como um atributo de dados
+    taskItem.setAttribute("data-task-id", taskIds[index]);
+  });
+
+  // Adicione a função de editar às tarefas
+  var editButtons = document.querySelectorAll(".edit-btn");
+  editButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var taskItem = button.parentElement;
+      var taskId = taskItem.getAttribute("data-task-id");
+      editTask(taskItem, taskId);
     });
   });
 
-  var removeButtons = document.querySelectorAll('.remove-btn');
-  removeButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      if (confirm('Tem certeza de que deseja remover esta tarefa?')) {
-        removeTask(button.parentElement);
+  // Adicione a função de remover às tarefas
+  var removeButtons = document.querySelectorAll(".remove-btn");
+  removeButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var taskItem = button.parentElement;
+      var taskId = taskItem.getAttribute("data-task-id");
+      if (confirm("Tem certeza de que deseja remover esta tarefa?")) {
+        removeTask(taskItem, taskId);
       }
     });
   });
+
 
   var taskItems = document.querySelectorAll('[draggable="true"]');
   taskItems.forEach(function(taskItem) {
