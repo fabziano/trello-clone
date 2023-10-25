@@ -2,8 +2,10 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8">
+    <!-- meta de viewport para deixar o site responstivo -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trello - Grupo 8</title>
+    <!-- sortchut icon para colocar um ícone na página -->
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -14,17 +16,21 @@
           <i class="bi bi-trello"></i><h1>Trello</h1>
         </div>
         <div class="SeletorCor">
+          <!-- input de color para selecionar a cor de fundo do body -->
           <input type="color" value="#16243a" id="seletor" title="Cor do Background"/>
           <label for="seletor">alterar cor</label>
         </div>   
       </header>
       <main>
+        <!-- ondrop é para quando o item é solto e ondragover é para o arrastar do item -->
         <div class="column" id="todo" ondrop="drop(event, 'todo')" ondragover="allowDrop(event)">
             <h3>To Do</h3>
             <input type="text" id="todoTitle" placeholder="Título da Tarefa">
             <input type="text" id="todoTask" placeholder="Descrição da Tarefa">
+            <!-- botao adicionar com parametro diferente em cada coluna, para funcoes independentes -->
             <button onclick="addToColumn('todo')"><i class="bi bi-plus-circle"></i> Adicionar</button>
-            <ul id="todoList"></ul>
+            <ul id="todoList"></ul> 
+            <!-- as funcao ondrop lida com o soltar da task, a allow drop funciona enquanto o item é arrastado-->
           </div>
           <div class="column" id="inProgress" ondrop="drop(event, 'inProgress')" ondragover="allowDrop(event)">
             <h3>In Progress</h3>
